@@ -41,7 +41,7 @@ public class ResponseDTO {
 		
 	}
 	
-	private String url;
+	private String result;
 	private ResponseHeader header;
 	
 	
@@ -60,12 +60,12 @@ public class ResponseDTO {
 		this.header = header;
 	}
 
-	public String getUrl() {
-		return url;
+	public String getResult() {
+		return result;
 	}
 
-	public void setUrl(String url) {
-		this.url = url;
+	public void setResult(String result) {
+		this.result = result;
 	}
 
 	

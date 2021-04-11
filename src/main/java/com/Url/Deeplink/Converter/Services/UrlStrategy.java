@@ -36,14 +36,14 @@ public class UrlStrategy implements ConvertStrategy{
 				if (m.find() && m.groupCount() == 2 && m.group(2).split("-").length == 3){
 					contentId = Integer.parseInt(m.group(2).split("-")[2]);
 					var tran = tranRepository.findTransactionByContentId(contentId);
-					if(tran == null || !convertedUrl.getQuery().split("=")[1].equals(tran.getFlowName())) {
+					if(tran == null || !convertedUrl.getQuery().split("=")[1].equals(tran.getFlowName()) || !m.group(2).split("-")[0].equals(tran.getTransactionName()) || !m.group(1).equals(String.valueOf(tran.getCustNo()))) {
 						result.getHeader().setSuccess(false);
 						result.getHeader().setCode(ErrorCodes.RecordNotFound.getValue());
 						result.getHeader().setMessage(ErrorCodes.RecordNotFound.name());
 						return result;
 					}
 					deepLink += contentId + "&flowId="+tran.getFlowId();
-					result.setUrl(deepLink);
+					result.setResult(deepLink);
 				}
 				else {
 					result.getHeader().setSuccess(false);
@@ -58,14 +58,14 @@ public class UrlStrategy implements ConvertStrategy{
 				if (m.find() && m.groupCount() == 2 && m.group(2).split("-").length == 3){
 					contentId = Integer.parseInt(m.group(2).split("-")[2]);
 					var tran = tranRepository.findTransactionByContentId(contentId);
-					if(tran == null) {
+					if(tran == null || !m.group(2).split("-")[0].equals(tran.getTransactionName()) || !m.group(1).equals(String.valueOf(tran.getCustNo()))) {
 						result.getHeader().setSuccess(false);
 						result.getHeader().setCode(ErrorCodes.RecordNotFound.getValue());
 						result.getHeader().setMessage(ErrorCodes.RecordNotFound.name());
 						return result;
 					}
 					deepLink += contentId;
-					result.setUrl(deepLink);
+					result.setResult(deepLink);
 				}
 				else {
 					result.getHeader().setSuccess(false);

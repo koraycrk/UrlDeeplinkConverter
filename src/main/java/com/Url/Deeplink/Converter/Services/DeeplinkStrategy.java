@@ -39,7 +39,7 @@ ResponseDTO result = new ResponseDTO();
 					return result;
 				}
 				resultUrl += tran.getCustNo() + "/" + tran.getTransactionName() + "-t-" + contentId + "?flowName=" + tran.getFlowName();
-				result.setUrl(resultUrl);
+				result.setResult(resultUrl);
 			}
 			else {
 				 p = Pattern.compile("ty://?(.+)&(.+)");
@@ -54,7 +54,7 @@ ResponseDTO result = new ResponseDTO();
 							return result;
 						}
 						resultUrl += tran.getCustNo() + "/" + tran.getTransactionName() + "-t-" + contentId;
-						result.setUrl(resultUrl);
+						result.setResult(resultUrl);
 				 }
 				 else {
 					 result.getHeader().setSuccess(false);
